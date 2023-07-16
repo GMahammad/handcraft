@@ -7,7 +7,16 @@
   opacity: var(--mainOpacity);
   height: 25em !important;
 }
-
+.nothing-found{
+  background-color: rgb(240, 103, 103);
+  text-align: center;
+  font-size: 18px;
+  border-radius: 10px;
+  width: 90%;
+  padding: 20px 0;
+  margin: 20px auto;
+  color: white;
+}
 .dark-overlay {
   background-color: rgba(0, 0, 0, 0.35);
   position: absolute;
@@ -37,11 +46,32 @@ html{
 .nav-item a:hover{
   color:#050035 !important
 }
+.view-svg{
+  transition: .3s;
+}
+.view-svg:hover{
+  background-color: rgb(242, 242, 198);
+  border-radius: 10px;
+  padding: 5px 7px;
+  cursor: pointer;
+}
 .search-bar{
   height: 45px;
   border-radius: 10px 0 0 10px;
   outline: none;
 }
+.sort-input{
+  margin-left: 10px;
+  outline: none;
+  background-color: rgb(173, 166, 100);
+  width: 160px;
+
+}
+.sort-input > option{
+  color: beige;
+  background-color: rgb(173, 166, 100);
+}
+
 .category-item li{
   cursor: pointer;
   display: flex;
@@ -51,8 +81,28 @@ html{
   transition: .3s;
 }
 .active-category p{
-  color:purple
+  color:purple;
+  border-bottom:2px solid purple;
 }
+
+.invalid-search input{
+ background-color: rgb(236, 118, 118) !important;
+color: white !important;
+transition: .35s;
+}
+.error-search{
+  transition: .3s;
+  font-size: 13px;
+  margin-bottom: 5px;
+  width: 73%;
+  border-radius: 10px;
+  padding: 3px 6px;
+  color: rgb(144, 4, 4);
+  background-color: rgb(250, 102, 102);
+}
+.invalid-search span{
+  background-color: rgb(236, 118, 118) !important;
+ }
 
 .category-item p{
   transition: .2s;
@@ -103,7 +153,6 @@ html{
   color: rgb(212, 138, 0);
   font-weight: 500;
   padding: 10px 15px;
-
   border-radius: 10px;
 }
 .button-general:hover{
@@ -371,6 +420,9 @@ html{
 .details-9 {
   overflow: hidden;
 }
+.product-description{
+  color: rgb(173, 166, 100);
+}
 .product-details-content > h3,
 .inner-wrapper-sticky > h3 {
     color: #383838;
@@ -613,7 +665,7 @@ html{
     color: #050035;
     font-size: 18px;
 }
-.sidebar-details7 .quickview-btn-cart > a {
+.details7 .quickview-btn-cart > a {
     padding: 17px 16px;
 }
 .single-details-gallery {
@@ -724,11 +776,12 @@ a.bundle-btn {
 .sidebar-widget {
   display: block;
 }
-#amount{
-  background-color: rgb(221, 221, 221);
+.amount{
+  text-align: center;
+  background-color: rgb(221, 221, 221) !important;
   width: 45%;
+  padding: 6px 8px;
   border-radius: 10px;
-  margin-right: 10px !important;
 }
 
 .sidebar-title {
@@ -752,10 +805,10 @@ a.bundle-btn {
 .product-tags ul li a:hover {
   color: #050035;
 }
-.sidebar-search form {
+.sidebar-search  {
   position: relative;
 }
-.sidebar-search form input {
+.sidebar-search input {
   background: #f1f1f1 none repeat scroll 0 0;
   border: medium none;
   box-shadow: none;
@@ -764,7 +817,8 @@ a.bundle-btn {
   padding-left: 15px;
   padding-right: 55px;
 }
-.sidebar-search form > button {
+.sidebar-search  span {
+  border-radius: 0 10px 10px 0;
   background-color: #dedede;
   border: medium none;
   color: #050035;
@@ -774,9 +828,12 @@ a.bundle-btn {
   line-height: 50px;
   padding: 0 16px;
   position: absolute;
-  right: 0;
   top: 0;
   transition: all 0.3s ease 0s;
+}
+
+.sidebar-search svg{
+  margin-bottom: 7px;
 }
 .price_filter .ui-slider.ui-slider-horizontal.ui-widget.ui-widget-content.ui-corner-all {
   background: #ebebeb none repeat scroll 0 0;
@@ -967,7 +1024,12 @@ a.bundle-btn {
 }
 
 .search-product-image{
-  width: 270px;
+  width: 250px;
+  height: 350px;
+  object-fit: cover;
+}
+.search-product-image {
+  transition: .3s;
 }
 
 .shop-tab a {
@@ -988,26 +1050,36 @@ a.bundle-btn {
   display: inline-block;
   margin: 0 3px;
 }
-.pagination-style ul li a {
-  background-color: #f6f6f6;
-  color: #3f3f3f;
+.pagination-style ul li button {
+  outline: none;
+  background-color: rgb(173, 166, 100) !important;
+  color:  beige;
+  padding: 8px 14px;
   display: inline-block;
-  font-size: 13px;
+  align-items: center;
+  font-size: 15px;
   font-weight: 500;
   height: 40px;
-  line-height: 41px;
-  width: 40px;
+  line-height: 25px;
+  border: none;
+  border-radius: 5px;
 }
-.pagination-style ul li.active a,
-.pagination-style ul li a:hover {
-  background-color: #3f3f3f;
-  color: #fff;
+.pagination-style ul li.active button,
+.pagination-style ul li button:hover {
+  background-color: #3f3f3f !important;
+  color: #fff !important;
 }
 .single-product-list {
   display: flex;
 }
 .product-content-list {
+  width: 100% ;
   margin-left: 30px;
+}
+.product-content-list a {
+  color: black;
+  text-decoration: none;
+  font-size: 20px;
 }
 .product-list-info > h4 {
   color: #191919;
@@ -1095,16 +1167,82 @@ a.bundle-btn {
   top: 50%;
 }
 .list-img-width {
-  flex: 0 0 312px;
   position: relative;
+  width: 50px !important; 
 }
+.product-price{
+  text-decoration: none;
+
+  margin-right: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  background-color: rgb(173, 166, 100);
+  padding: 4px 12px; 
+  border-radius: 10px;
+  color: beige;
+}
+.add-to-card-list a {
+  color: beige;
+  font-size: 16px;
+  border: 2px solid rgb(173, 166, 100);
+  background-color: rgb(173, 166, 100);
+  padding: 10px 15px;
+  transition: .3s;
+  border-radius: 10px;
+}
+.add-to-card-list a:hover{
+  color:rgb(173, 166, 100) ;
+  background-color: transparent;
+  border-radius: 15px;
+}
+
+
 .breadcrumb-padding .container-fluid {
   padding: 0 100px;
 }
 .product-box-style .product-action a {
   margin: 0 7px;
 }
-
+.whole-product{
+  position: relative;
+  overflow: hidden;
+}
+.whole-product:hover .view-detail{
+top: 38%;
+opacity: 1;
+z-index: 1;
+}
+.whole-product:hover img{
+  opacity: 0.4;
+}
+.view-detail{
+  position: absolute;
+  border-radius: 15px;
+  color: beige;
+  background-color: rgba(173, 166, 100, 0.757) ;
+  padding: 10px 15px;
+  top: 60%;
+  opacity: 0;
+  right: 30%;
+  transition: .3s;
+}
+.discount{
+  position: absolute;
+  z-index: 10;
+  width: 80%;
+  background-color: rgba(241, 109, 109, 0.767);
+  color: beige;
+  text-decoration: none;
+  bottom: 20%;
+  border-radius: 0 10px 10px 0;
+  width: 80px;
+  text-align: center;
+}
+.old-price{
+  color: rgb(248, 176, 176);
+  margin-right: 10px;
+  text-decoration: line-through;
+}
 
 
 
