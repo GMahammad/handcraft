@@ -1,5 +1,6 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
+import React from "react";
 const CarouselHome = () => {
   return (
     <div className="carousel-main">

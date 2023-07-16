@@ -4,6 +4,7 @@ import Spinner from "../../Utils/Spinner";
 import { Link } from "react-router-dom";
 
 const SearchItem: React.FC<{
+  productId:number
   product: ProductModel;
   key: number;
   gridView: boolean;
@@ -11,6 +12,8 @@ const SearchItem: React.FC<{
   const [images, setImages] = useState([]);
   const [httpError, setHttpError] = useState("");
   const [isLoadingImage, setIsLoadingImage] = useState(true);
+
+
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -28,6 +31,8 @@ const SearchItem: React.FC<{
     });
   }, []);
 
+
+
   if (isLoadingImage) {
     return <Spinner />;
   }
@@ -44,7 +49,7 @@ const SearchItem: React.FC<{
             : "text-decoration-none col-lg-12 whole-product"
         }
       >
-        <p className="view-detail">View Details</p>
+        {props.gridView ? <p className="view-detail">View Details</p> : <></>}
         <div
           className={
             props.gridView
@@ -93,10 +98,7 @@ const SearchItem: React.FC<{
                 )}{" "}
                 {props.product.discount === 0
                   ? `${props.product.price}$`
-                  : `${
-                      props.product.price -
-                      (props.product.price * props.product.discount) / 100
-                    }$`}
+                  : `${props.product.discountedPrice}$`}
               </p>
             </div>
             {!props.gridView ? (

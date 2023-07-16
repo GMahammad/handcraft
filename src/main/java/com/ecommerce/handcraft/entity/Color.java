@@ -17,11 +17,9 @@ public class Color {
     @Column(name = "color_id")
     private Long colorID;
 
-    @JsonIgnore
-    @ManyToMany
-    @JoinTable(name = "product_color", joinColumns = @JoinColumn(name = "color_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id"))
-    private List<Product> products = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "colors")
+    private List<Product> products;
 
     @Column(name = "color_name", nullable = false)
     private String colorName;

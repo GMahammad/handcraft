@@ -27,9 +27,10 @@ public class Product {
     private Integer discount;
     @Column(name = "price",nullable = false)
     private Integer price;
+    @Column(name="discounted_price")
+    private Double discountedPrice;
     @Column(name="rating")
     private double rating;
-
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "category_id")
     private Category category;
@@ -37,7 +38,10 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private List<Image> images;
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "products")
+    @ManyToMany
+    @JoinTable(
+             name = "product_color",joinColumns = @JoinColumn(name = "product_id"),inverseJoinColumns = @JoinColumn(name="color_id")
+    )
     private List<Color> colors;
+
 }

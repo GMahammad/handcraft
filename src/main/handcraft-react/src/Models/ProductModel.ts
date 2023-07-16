@@ -10,6 +10,7 @@ class ProductModel {
   price: number;
   productName: string;
   productDescription: string;
+  discountedPrice:number;
   category: object;
   constructor(
     productId: number,
@@ -19,6 +20,7 @@ class ProductModel {
     price: number,
     productName: string,
     productDescription: string,
+    discountedPrice:number,
     category: Category
   ) {
     this.productId = productId;
@@ -28,6 +30,7 @@ class ProductModel {
     this.price = price;
     this.productName = productName;
     this.productDescription = productDescription;
+    this.discountedPrice = discountedPrice;
     this.category = category;
   }
 }

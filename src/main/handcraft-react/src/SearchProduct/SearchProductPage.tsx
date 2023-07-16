@@ -66,6 +66,8 @@ const SearchProductPage = () => {
     fetchCategories().catch((err) => setHttpError(err.message));
   }, []);
 
+
+
   if (isLoadingProduct) {
     return <Spinner />;
   }
@@ -98,7 +100,6 @@ const SearchProductPage = () => {
     setCurrentPage(pageNumber);
     window.scrollTo({top:5,behavior:"smooth"})
   }
-console.log(sortUrl);
   return (
     <>
       <div>
@@ -321,6 +322,7 @@ console.log(sortUrl);
                           ) : (
                             products.map((product) => (
                               <SearchItem
+                              productId = {product.productId}
                               gridView = {gridView}
                                 product={product}
                                 key={product.productId}

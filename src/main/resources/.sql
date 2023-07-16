@@ -106,3 +106,14 @@ insert into image (image_id,image_url,product_id) values (72,'https://images.pex
 insert into image (image_id,image_url,product_id) values (73,'https://images.pexels.com/photos/1148955/pexels-photo-1148955.jpeg?auto=compress&cs=tinysrgb&w=600',25);
 insert into image (image_id,image_url,product_id) values (74,'https://images.pexels.com/photos/4352247/pexels-photo-4352247.jpeg?auto=compress&cs=tinysrgb&w=600',25);
 insert into image (image_id,image_url,product_id) values (75,'https://images.pexels.com/photos/447592/pexels-photo-447592.jpeg?auto=compress&cs=tinysrgb&w=600',25);
+
+
+insert into color(color_id,color_name) values (1,'black');
+insert into color(color_id,color_name) values (2,'brown');
+insert into color(color_id,color_name) values (3,'beige');
+insert into color(color_id,color_name) values (4,'white');
+insert into color(color_id,color_name) values (5,'blue');
+insert into color(color_id,color_name) values (6,'light brown');
+insert into color(color_id,color_name) values (7,'red');
+
+insert into product_color (color_id,product_id) values (1,1),(2,1),(3,1),(2,2),(4,2),
