@@ -5,11 +5,17 @@ import Footer from "./NavbarFooter/Footer";
 import Navbar from "./NavbarFooter/Navbar";
 import ProductDetailPage from "./ProductDetail/ProductDetailPage";
 import SearchProductPage from "./SearchProduct/SearchProductPage";
-import React from "react";
 import AboutUs from "./AboutUs/AboutUs";
 import ContactPage from "./Contact/ContactPage";
+import CartPage from "./Cart/Components/CartPage";
+import Checkout from "./Cart/Components/Checkout";
+import AuthPage from "./Auth/AuthPage";
+
+
+
 
 function App() {
+
   return (
     <div className="d-flex flex-column min-vh-100">
       <Navbar />
@@ -30,6 +36,18 @@ function App() {
           </Route>
           <Route path="/detail:productId">
           <ProductDetailPage/>
+          </Route>
+          <Route path="/cartpage">
+          <CartPage/>
+          </Route>
+          <Route path="/checkout">
+          <Checkout/>
+          </Route>
+          <Route path="/authentication/register">
+          <AuthPage register={true}/>
+          </Route>
+          <Route path="/authentication/login">
+          <AuthPage register = {false}/>
           </Route>
         </Switch>
       </div>

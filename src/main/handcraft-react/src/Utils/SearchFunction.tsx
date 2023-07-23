@@ -75,7 +75,6 @@ const fetchProductByAllInputs = async (
     } else {
       url = `http://localhost:8080/api/products?page=${currentPage - 1}&size=${productPerPage}`;
     }
-    console.log(sortUrl);
     if(sortUrl !=="&sort="){
       url +=sortUrl
     }
@@ -85,7 +84,6 @@ const fetchProductByAllInputs = async (
         throw new Error("Something went wrong!");
       }
       const responseJson = await responseData.json();
-      console.log(url);
       setTotalPages(responseJson.page.totalPages)
       setProducts(responseJson._embedded.products);
       setTotalElements(responseJson.page.totalElements)

@@ -1,9 +1,6 @@
 package com.ecommerce.handcraft.configuration;
 
-import com.ecommerce.handcraft.entity.Category;
-import com.ecommerce.handcraft.entity.Image;
-import com.ecommerce.handcraft.entity.Message;
-import com.ecommerce.handcraft.entity.Product;
+import com.ecommerce.handcraft.entity.*;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
@@ -22,11 +19,14 @@ public class MyDataRestConfiguration implements RepositoryRestConfigurer {
         config.exposeIdsFor(Image.class);
         config.exposeIdsFor(Category.class);
         config.exposeIdsFor(Message.class);
+        config.exposeIdsFor(User.class);
+
 
         disableHttpMethods(Product.class, config, theUnsupportedAActions);
         disableHttpMethods(Image.class, config, theUnsupportedAActions);
         disableHttpMethods(Category.class, config, theUnsupportedAActions);
         disableHttpMethods(Message.class, config, theUnsupportedAActions);
+        disableHttpMethods(User.class, config, theUnsupportedAActions);
 
 
         /* Configure CORS Mapping */

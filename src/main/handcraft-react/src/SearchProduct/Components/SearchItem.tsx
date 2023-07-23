@@ -4,7 +4,7 @@ import Spinner from "../../Utils/Spinner";
 import { Link } from "react-router-dom";
 
 const SearchItem: React.FC<{
-  productId:number
+  productId: number;
   product: ProductModel;
   key: number;
   gridView: boolean;
@@ -12,8 +12,6 @@ const SearchItem: React.FC<{
   const [images, setImages] = useState([]);
   const [httpError, setHttpError] = useState("");
   const [isLoadingImage, setIsLoadingImage] = useState(true);
-
-
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -30,8 +28,6 @@ const SearchItem: React.FC<{
       setHttpError(err.message);
     });
   }, []);
-
-
 
   if (isLoadingImage) {
     return <Spinner />;
@@ -117,121 +113,7 @@ const SearchItem: React.FC<{
           </div>
         </div>
       </Link>
-      {/* <div id="grid-sidebar8" className="tab-pane fade">
-                        <div className="row">
-                          <div className="col-lg-12 mb-3  ">
-                            <div className="product-wrapper my-3 single-product-list product-list-right-pr mb-60">
-                              <div className="product-img list-img-width">
-                                <a href="#">
-                                  <img
-                                    className="search-product-image"
-                                    src={require("../Assets/Images/4.jpg")}
-                                    alt=""
-                                  />
-                                </a>
-                                <div className="product-action-list-style"></div>
-                              </div>
-                              <div className="product-content-list">
-                                <div className="product-list-info">
-                                  <h4>
-                                    <a href="#">Homme Tapered Smart </a>
-                                  </h4>
-                                  <span>$150.00</span>
-                                  <p>
-                                    Lorem ipsum dolor sit amet, mana consectetur
-                                    adipisicing elit, sed do eiusmod tempor
-                                    labore.{" "}
-                                  </p>
-                                </div>
-                                <div className="product-list-cart-wishlist">
-                                  <div className="product-list-cart">
-                                    <a
-                                      className="btn-hover list-btn-style"
-                                      href="#"
-                                    >
-                                      add to cart
-                                    </a>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="col-lg-12 mb-3  ">
-                            <div className="product-wrapper my-3 single-product-list product-list-right-pr mb-60">
-                              <div className="product-img list-img-width">
-                                <a href="#">
-                                  <img
-                                    className="search-product-image"
-                                    src={require("../Assets/Images/4.jpg")}
-                                    alt=""
-                                  />
-                                </a>
-                                <div className="product-action-list-style"></div>
-                              </div>
-                              <div className="product-content-list">
-                                <div className="product-list-info">
-                                  <h4>
-                                    <a href="#">Denim Stonewash</a>
-                                  </h4>
-                                  <span>$180.00</span>
-                                  <p>
-                                    Lorem ipsum dolor sit amet, mana consectetur
-                                    adipisicing elit, sed do eiusmod tempor
-                                    labore.{" "}
-                                  </p>
-                                </div>
-                                <div className="product-list-cart-wishlist">
-                                  <div className="product-list-cart">
-                                    <a
-                                      className="btn-hover list-btn-style"
-                                      href="#"
-                                    >
-                                      add to cart
-                                    </a>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="col-lg-12 mb-3  ">
-                            <div className="product-wrapper my-3 single-product-list product-list-right-pr mb-60">
-                              <div className="product-img list-img-width">
-                                <a href="#">
-                                  <img
-                                    className="search-product-image"
-                                    src={require("../Assets/Images/4.jpg")}
-                                    alt=""
-                                  />
-                                </a>
-                                <div className="product-action-list-style"></div>
-                              </div>
-                              <div className="product-content-list">
-                                <div className="product-list-info">
-                                  <h4>
-                                    <a href="#">Mini Waffle 5 Pack</a>
-                                  </h4>
-                                  <span>$130.00</span>
-                                  <p>
-                                    Lorem ipsum dolor sit amet, mana consectetur
-                                    adipisicing elit, sed do eiusmod tempor
-                                    labore.{" "}
-                                  </p>
-                                </div>
-                                <div className="product-list-cart-wishlist">
-                                  <div className="product-list-cart">
-                                    <a
-                                      className="btn-hover list-btn-style"
-                                      href="#"
-                                    >
-                                      add to cart
-                                    </a>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div> */}
+     
     </>
   );
 };

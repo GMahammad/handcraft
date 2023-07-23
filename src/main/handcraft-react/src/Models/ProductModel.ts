@@ -1,37 +1,32 @@
-interface Category {
-  categoryName: string;
-}
+import ColorModel from "./ColorModel";
 
 class ProductModel {
   productId: number;
   discount: number;
   rating: number;
-  images: string[];
   price: number;
   productName: string;
   productDescription: string;
   discountedPrice:number;
-  category: object;
+  color:ColorModel[]
   constructor(
     productId: number,
     discount: number,
     rating: number,
-    images: string[],
     price: number,
     productName: string,
     productDescription: string,
     discountedPrice:number,
-    category: Category
+    color:ColorModel[]
   ) {
     this.productId = productId;
     this.discount = discount;
     this.rating=rating;
-    this.images = images;
     this.price = price;
     this.productName = productName;
     this.productDescription = productDescription;
     this.discountedPrice = discountedPrice;
-    this.category = category;
+    this.color = color
   }
 }
 export default ProductModel;

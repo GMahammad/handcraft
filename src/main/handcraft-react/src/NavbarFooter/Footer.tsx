@@ -10,7 +10,7 @@ const Footer = () => {
       };
   return (
     <>
-       <footer className="footer-area mt-5 pt-5">
+       <footer className="footer-area  pt-5">
             <div className="footer-top-area pt-120 pb-90">
                 <div className="container">
                     <div className="row">

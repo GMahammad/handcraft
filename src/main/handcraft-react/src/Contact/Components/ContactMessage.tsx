@@ -13,7 +13,6 @@ const ContactMessage = () => {
 
   const sendMessageToAdmin = async (event:any) => {
     event.preventDefault();
-  
     try {
         if(messageBody || messageEmail || messageName || messagePhone || messageTitle){
       const response = await fetch("http://localhost:8080/api/v1/messages/sendmessage", {

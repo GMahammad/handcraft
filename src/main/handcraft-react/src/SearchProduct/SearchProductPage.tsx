@@ -103,7 +103,7 @@ const SearchProductPage = () => {
   return (
     <>
       <div>
-        <div className="shop-page-wrapper ptb-100">
+        <div className="shop-page-wrapper my-5">
           <div className="container">
             <div className="row">
               <div className="col-lg-3">
