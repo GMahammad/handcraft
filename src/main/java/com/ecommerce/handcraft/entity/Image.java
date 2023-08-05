@@ -8,7 +8,8 @@ import javax.persistence.*;
 @Data
 public class Image {
     @Id
-    @Column(name = "image_id")
+    @Column(name = "image_id",length = Integer.MAX_VALUE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long imageId;
     @Column(name = "image_url")
     private String imageURL;

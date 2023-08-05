@@ -20,7 +20,7 @@ public class Message {
     private String messageTitle;
     @Column(name = "message_sender_name")
     private String messageSenderName;
-    @Column(name = "message_body",nullable = false)
+    @Column(name = "message_body",nullable = false,length = Integer.MAX_VALUE)
     private String messageBody;
     @Column(name = "message_phone",nullable = false)
     private String messagePhone;
@@ -34,5 +34,8 @@ public class Message {
         this.messageBody = messageBody;
         this.messagePhone = messagePhone;
         this.createdAt = createdAt;
+    }
+
+    public Message() {
     }
 }

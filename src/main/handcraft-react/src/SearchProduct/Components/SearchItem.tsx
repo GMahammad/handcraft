@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import ProductModel from "../../Models/ProductModel";
 import Spinner from "../../Utils/Spinner";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const SearchItem: React.FC<{
   productId: number;
   product: ProductModel;
   key: number;
   gridView: boolean;
+  mobile: boolean;
 }> = (props) => {
   const [images, setImages] = useState([]);
   const [httpError, setHttpError] = useState("");
@@ -35,14 +36,15 @@ const SearchItem: React.FC<{
   if (httpError) {
     return <p>{httpError}</p>;
   }
+
   return (
     <>
-      <Link
-        to={`/detail:${props.product.productId}`}
+      <a
+        href={`/detail:${props.product.productId}`}
         className={
           props.gridView
-            ? "col-lg-4 col-md-6 text-decoration-none whole-product"
-            : "text-decoration-none col-lg-12 whole-product"
+            ? "col-lg-4 col-md-6 text-decoration-none whole-product text-center"
+            : "text-decoration-none col-lg-12 whole-product text-center"
         }
       >
         {props.gridView ? <p className="view-detail">View Details</p> : <></>}
@@ -50,11 +52,11 @@ const SearchItem: React.FC<{
           className={
             props.gridView
               ? "product-wrapper product-box-style my-3"
-              : "product-wrapper my-3 single-product-list product-list-right-pr mb-60 w-100"
+              : "product-wrapper my-3 single-product-list product-list-right-pr w-100"
           }
         >
-          <div className="product-img">
-            <Link to={`/detail:${props.product.productId}`}>
+          <div className={props.gridView ? "col-lg-12" : "col-12 col-sm-5"}>
+            <div className="product-img">
               {props.product.discount !== 0 ? (
                 <p className="discount">-{props.product.discount}% </p>
               ) : (
@@ -65,55 +67,56 @@ const SearchItem: React.FC<{
                 src={images[0]}
                 alt=""
               />
-            </Link>
+            </div>
           </div>
-          <div
-            className={
-              props.gridView ? "product-content" : "product-content-list"
-            }
-          >
+          <div className={props.gridView ? "col-lg-12" : "col-11 col-sm-6"}>
             <div
               className={
-                !props.gridView
-                  ? "d-flex justify-content-between align-items-center"
-                  : ""
+                props.gridView ? "product-content" : "product-content-list"
               }
             >
-              <h6>
-                <a href="#">
-                  {props.product.productName.length > 30
-                    ? `${props.product.productName.slice(0, 30)}...`
-                    : props.product.productName}{" "}
-                </a>
-              </h6>
-              <p className="product-price">
-                {props.product.discount !== 0 ? (
-                  <label className="old-price">{props.product.price}$</label>
-                ) : (
-                  <></>
-                )}{" "}
-                {props.product.discount === 0
-                  ? `${props.product.price}$`
-                  : `${props.product.discountedPrice}$`}
-              </p>
-            </div>
-            {!props.gridView ? (
-              <div className="product-list-cart">
-                <p className="text-center product-description">
-                  <hr />
-                  {props.product.productDescription}
+              <div
+                className={
+                  !props.gridView
+                    ? "d-flex justify-content-between align-items-center"
+                    : ""
+                }
+              >
+                <h6>
+                  <a href="#">
+                    {props.product.productName.length > 30
+                      ? `${props.product.productName.slice(0, 30)}...`
+                      : props.product.productName}{" "}
+                  </a>
+                </h6>
+                <p className="product-price">
+                  {props.product.discount !== 0 ? (
+                    <label className="old-price">{props.product.price}$</label>
+                  ) : (
+                    <></>
+                  )}{" "}
+                  {props.product.discount === 0
+                    ? `${props.product.price}$`
+                    : `${props.product.discountedPrice}$`}
                 </p>
-                <div className="add-to-card-list text-center mt-5">
-                  <a href="#">Add to cart</a>
-                </div>
               </div>
-            ) : (
-              <></>
-            )}
+              {!props.gridView ? (
+                <div className="product-list-cart">
+                  <p className="text-center product-description">
+                    <hr />
+                    {props.product.productDescription}
+                  </p>
+                  <div className="add-to-card-list text-center mt-5">
+                    <a href="#">Add to cart</a>
+                  </div>
+                </div>
+              ) : (
+                <></>
+              )}
+            </div>
           </div>
         </div>
-      </Link>
-     
+      </a>
     </>
   );
 };

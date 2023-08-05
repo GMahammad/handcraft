@@ -1,7 +1,10 @@
 package com.ecommerce.handcraft.controllers;
 
 
+import com.ecommerce.handcraft.entity.Roles;
+import com.ecommerce.handcraft.entity.RolesEnum;
 import com.ecommerce.handcraft.entity.User;
+import com.ecommerce.handcraft.repository.RoleRepository;
 import com.ecommerce.handcraft.repository.UserRepository;
 import com.ecommerce.handcraft.requests.LoginRequest;
 import com.ecommerce.handcraft.requests.RegistrationRequest;
@@ -13,8 +16,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
-import java.util.Optional;
+import java.util.HashSet;
+import java.util.Set;
 
 @CrossOrigin("http://localhost:3000")
 @RestController
@@ -24,11 +27,12 @@ public class UserController {
 @Autowired
 private UserRepository userRepository;
 private UserService userService;
+private RoleRepository roleRepository;
 
-
-    public UserController(UserRepository userRepository,UserService userService) {
+    public UserController(UserRepository userRepository, UserService userService, RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.userService = userService;
+        this.roleRepository = roleRepository;
     }
 
     @PostMapping("/login")
@@ -43,5 +47,33 @@ private UserService userService;
     @PostMapping("/signup")
     public ResponseEntity<?> signUp(@Valid @RequestBody RegistrationRequest registrationRequest) throws Exception{
           return userService.addUser(registrationRequest);
+    }
+
+    @DeleteMapping("/admin/deleteuser")
+    public ResponseEntity<?> deleteUser(@Valid @RequestParam Long userId) throws Exception {
+        try {
+            User user = userRepository.findById(userId).orElse(null);
+            if (user != null) {
+                for (Roles role : user.getRoles()) {
+                    role.getUsers().remove(user);
+                }
+                user.getRoles().clear();
+                userRepository.save(user);
+                userRepository.delete(user);
+            }
+            return ResponseHandler.generateResponse("User deleted successfully!", HttpStatus.OK, null);
+        } catch (Exception e) {
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, null);
+        }
+    }
+
+    @PutMapping("/admin/updaterole")
+    public ResponseEntity<?> updateUserRole(@RequestParam Long userId) throws Exception{
+        try {
+            userService.updateUserRole(userId);
+            return ResponseHandler.generateResponse("User role changed as Moderator",HttpStatus.OK, null);
+        }catch (Exception e){
+            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.MULTI_STATUS,null);
+        }
     }
 }

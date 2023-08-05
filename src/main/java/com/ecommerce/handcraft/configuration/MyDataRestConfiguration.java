@@ -18,15 +18,22 @@ public class MyDataRestConfiguration implements RepositoryRestConfigurer {
         config.exposeIdsFor(Product.class);
         config.exposeIdsFor(Image.class);
         config.exposeIdsFor(Category.class);
+        config.exposeIdsFor(Color.class);
         config.exposeIdsFor(Message.class);
         config.exposeIdsFor(User.class);
+        config.exposeIdsFor(Roles.class);
+        config.exposeIdsFor(Review.class);
+
 
 
         disableHttpMethods(Product.class, config, theUnsupportedAActions);
+        disableHttpMethods(Color.class, config, theUnsupportedAActions);
         disableHttpMethods(Image.class, config, theUnsupportedAActions);
         disableHttpMethods(Category.class, config, theUnsupportedAActions);
         disableHttpMethods(Message.class, config, theUnsupportedAActions);
         disableHttpMethods(User.class, config, theUnsupportedAActions);
+        disableHttpMethods(Roles.class, config, theUnsupportedAActions);
+        disableHttpMethods(Review.class, config, theUnsupportedAActions);
 
 
         /* Configure CORS Mapping */

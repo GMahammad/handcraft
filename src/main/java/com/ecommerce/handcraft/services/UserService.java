@@ -89,6 +89,7 @@ public class UserService {
                                     roles.add(modRole);
 
                                     break;
+
                                 default:
                                     Roles userRole = roleRepository.findByRoleName(RolesEnum.USER)
                                             .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
@@ -103,7 +104,6 @@ public class UserService {
                         role.getUsers().add(newUser);
                     }
                     try {
-
                         userRepository.save(newUser);
                         return ResponseHandler.generateResponse("Registered successfully!", HttpStatus.OK, null);
                     } catch (Exception e) {
@@ -131,5 +131,20 @@ public class UserService {
                 .collect(Collectors.toList());
 
         return ResponseHandler.generateResponse("Logged in successfully", HttpStatus.OK, new JwtResponse(jwt, userDetails.getId(),  userDetails.getEmail(), roles, userDetails.getFirstName()));
+    }
+
+    public void updateUserRole(Long userId) throws Exception{
+        User user = userRepository.findById(userId).orElseThrow(()->new Exception("User can not be found with given ID!"));
+        Roles role = roleRepository.findByRoleName(RolesEnum.MODERATOR).orElseThrow(()->new Exception("Role can not be found with given Role name!"));
+        if (user.getRoles().contains(role)) {
+            throw new Exception("User already has the MODERATOR role!");
+        }
+        Set<Roles> roles = new HashSet<>();
+        roles.add(role);
+        user.setRoles(roles);
+        for (Roles r : roles) {
+            r.getUsers().add(user);
+        }
+        userRepository.save(user);
     }
 }

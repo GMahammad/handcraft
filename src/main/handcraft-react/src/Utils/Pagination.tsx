@@ -40,7 +40,7 @@ const Pagination: React.FC<{
             </button>
           </li>
           {pageNumbers.map((number) => (
-            <li className={props.currentPage === number ? "active" : ""} key={number} onClick={() => props.paginate(number)}>
+            <li  key={number} className={props.currentPage === number ? "active" : ""} onClick={() => props.paginate(number)}>
               <button >{number}</button>
             </li>
           ))}

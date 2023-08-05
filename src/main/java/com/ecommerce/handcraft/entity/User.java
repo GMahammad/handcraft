@@ -1,5 +1,6 @@
 package com.ecommerce.handcraft.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -28,7 +29,11 @@ public class User {
     @Size(max = 150)
     @Column(name = "password")
     private String password;
-    @ManyToMany(mappedBy = "users", cascade=CascadeType.ALL)
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    private List<Review> reviews;
+
+    @ManyToMany(mappedBy = "users", cascade={CascadeType.MERGE, CascadeType.PERSIST})
     private Set<Roles> roles;
     public User() {
     }

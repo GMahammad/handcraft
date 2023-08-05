@@ -16,12 +16,13 @@ const RelatedProduct: React.FC<{ relatedProducts: ProductModel[] }> = (
           <div className="row">
             {props.relatedProducts.map((relatedProduct, index) => (
               <div className="col-lg-3">
-              <SearchItem
-              productId={relatedProduct.productId}
-              product={relatedProduct}
-              key={index}
-              gridView={true}
-              />
+                <SearchItem
+                  mobile={false}
+                  productId={relatedProduct.productId}
+                  product={relatedProduct}
+                  key={index}
+                  gridView={true}
+                />
               </div>
             ))}
           </div>

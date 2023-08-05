@@ -6,7 +6,7 @@ const Checkout = () => {
 
   return (
     <>
-      <div className="checkout-area ptb-100">
+      <div className="checkout-area my-5">
         <div className="container">
           <div className="row"></div>
           <div className="row">

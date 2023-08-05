@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@auth0/auth0-react": "^2.1.1",
+    "@coreui/coreui": "^5.0.0-alpha.1",
+    "@coreui/react": "^5.0.0-alpha.0",
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -22,6 +24,8 @@
     "react-spinners": "^0.13.8",
     "react-validation": "^3.0.7",
     "redux-persist": "^6.0.0",
+    "semantic-ui-css": "^2.2.14",
+    "semantic-ui-react": "^2.1.4",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },

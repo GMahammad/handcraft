@@ -12,6 +12,7 @@ import StarRating from "../../Utils/StarRating";
 import ColorModel from "../../Models/ColorModel";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../Cart/cartSlice";
+import ReviewModel from "../../Models/ReviewModel";
 
 const Details: React.FC<{ productId: string }> = (props) => {
   const [isLoadingSingleProduct, setIsLoadingSingleProduct] = useState(true);
@@ -26,13 +27,23 @@ const Details: React.FC<{ productId: string }> = (props) => {
   const [cartCount, setCartCount] = useState<number>(0);
   const [cartColor, setCartColor] = useState("");
 
+  const [leaveReviewToggle, setLeaveReviewToggle] = useState(false);
+  const [reviewSuccess, setReviewSuccess] = useState(false);
+  const [reviewError, setReviewError] = useState(false);
+  const [reviewPostError, setReviewPostError] = useState(false);
+  const [reviewBody, setReviewBody] = useState("");
+  const [reviewRank, setReviewRank] = useState(0);
+  const [productRank, setProductRank] = useState(0);
+  const [userAddedReview, setUserAddedReview] = useState(false);
   const [colorError, setColorError] = useState(false);
   const [countError, setCountError] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [reviews, setReviews] = useState<ReviewModel[]>([]);
 
+  const { isAuthenticated, accessToken, tokenType, userEmail } = useSelector(
+    (store: any) => store.auth
+  );
   const dispatch = useDispatch();
-
-
 
   useEffect(() => {
     const fetchProductImages = async () => {
@@ -107,15 +118,41 @@ const Details: React.FC<{ productId: string }> = (props) => {
     };
     fetchProductColors().catch((err: any) => setHttpError(err.message));
   }, []);
-  const { cartItems, total, hello } = useSelector((store: any) => store.cart);
-  console.log(hello);
+
+  useEffect(() => {
+    const fetchReviewByProduct = async () => {
+      const url = `http://localhost:8080/api/products/${props.productId}/reviews`;
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
+      }
+
+      let productRankNumber = 0;
+
+      const responseJson = await response.json();
+      setReviews(responseJson._embedded.reviews);
+      for (const key in reviews) {
+        productRankNumber += reviews[key].ranking;
+        if (userEmail === reviews[key].userEmail) {
+          setUserAddedReview(true);
+        }
+      }
+      if (reviews) {
+        setProductRank(
+          Math.round((productRankNumber / reviews.length) * 2) / 2
+        );
+      }
+    };
+    fetchReviewByProduct().catch((e: any) => setHttpError(e.message));
+  }, [productRank, reviewSuccess]);
+
   const addItemToCart = () => {
     if (cartColor !== "" && cartCount) {
       dispatch(addToCart({ product, cartCount, cartColor }));
       setColorError(false);
       setCountError(false);
       setSuccess(true); // Show success message
-      const timer = setTimeout(() => {
+      setTimeout(() => {
         setSuccess(false); // Hide success message after 2 seconds
       }, 2000);
     } else {
@@ -133,6 +170,44 @@ const Details: React.FC<{ productId: string }> = (props) => {
       }
     }
   };
+
+  const addReview = async (event: any) => {
+    event.preventDefault();
+    try {
+      if (reviewBody && reviewRank) {
+        const url = "http://localhost:8080/api/v1/reviews/addreview";
+        const requestBody = {
+          method: "POST",
+          headers: {
+            Authorization: `${tokenType} ${accessToken}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            reviewBody: reviewBody,
+            ranking: reviewRank,
+            productId: props.productId,
+            userEmail: userEmail,
+          }),
+        };
+
+        const response = await fetch(url, requestBody);
+
+        if (response.ok) {
+          setReviewSuccess(true);
+          setReviewError(false);
+          setUserAddedReview(true);
+        } else {
+          setReviewError(true);
+          throw new Error("Failed to send message");
+        }
+      } else {
+        setReviewPostError(true);
+      }
+    } catch (error) {
+      setReviewPostError(true);
+    }
+  };
+
   if (isLoadingSingleProduct) {
     return <Spinner />;
   }
@@ -155,11 +230,11 @@ const Details: React.FC<{ productId: string }> = (props) => {
                     autoPlay={true}
                     infiniteLoop={true}
                     showThumbs={false}
-                    width={"85%"}
+                    width={"100%"}
                     autoFocus={true}
                     className="easyzoom"
                   >
-                    {images.map((image, index) => (
+                    {images.map((image, index: number) => (
                       <div key={index}>
                         <img src={image} alt="" />
                         {product?.discount ? (
@@ -179,7 +254,7 @@ const Details: React.FC<{ productId: string }> = (props) => {
                   <span>Category: {category?.categoryName}</span>
                 </div>
                 <div className="product-head d-flex justify-content-between align-items-center">
-                  <div className="mb-4">
+                  <div className="mb-2">
                     <h3>{product?.productName}</h3>
                   </div>
                   <div className="details-price mt-3">
@@ -199,8 +274,11 @@ const Details: React.FC<{ productId: string }> = (props) => {
                   </div>
                 </div>
                 <div className="rating-number">
-                  <div className="quick-view-rating ">
-                    <StarRating rating={product?.rating} size={20} />
+                  <div className="quick-view-rating d-flex align-items-center">
+                    <StarRating rating={productRank} size={20} />
+                    <span className="px-1 pt-1">
+                      Rating: ({productRank >= 0 ? productRank : 0})
+                    </span>
                   </div>
                 </div>
 
@@ -241,6 +319,7 @@ const Details: React.FC<{ productId: string }> = (props) => {
                     <div className="d-flex align-items-center">
                       <label>Colors: </label>
                       <select
+                        
                         onChange={(e) => setCartColor(e.target.value)}
                         className="select mx-2 color-select"
                       >
@@ -279,13 +358,76 @@ const Details: React.FC<{ productId: string }> = (props) => {
                     </div>
                   </div>
                 </form>
+                {}
+                {isAuthenticated &&
+                  (!userAddedReview ? (
+                    <div className="review-div mx-3">
+                      <button
+                        onClick={() => setLeaveReviewToggle(!leaveReviewToggle)}
+                        className="review-btn my-3"
+                      >
+                        Leave Review?
+                      </button>
+                      {leaveReviewToggle ? (
+                        <form onSubmit={addReview} className="leave-review">
+                          <textarea
+                            onChange={(e) => setReviewBody(e.target.value)}
+                            className="text-review"
+                            rows={5}
+                            cols={60}
+                          ></textarea>
+                          <br />
+                          <select
+                            onChange={(e: any) => setReviewRank(e.target.value)}
+                            className="select-review"
+                            name=""
+                            id=""
+                          >
+                            <option
+                              style={{ color: "black" }}
+                              disabled
+                              selected
+                              value=""
+                            >
+                              --Select Rate--
+                            </option>
+                            <option value={1}>&#9733; </option>
+                            <option value={2}>&#9733; &#9733;</option>
+                            <option value={3}>&#9733; &#9733; &#9733;</option>
+                            <option value={4}>
+                              &#9733; &#9733; &#9733; &#9733;
+                            </option>
+                            <option value={5}>
+                              &#9733; &#9733; &#9733; &#9733; &#9733;
+                            </option>
+                          </select>
+                          <br />
+                          <button className="review-btn my-2">
+                            Add Review
+                          </button>
+                        </form>
+                      ) : (
+                        <></>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="my-2">
+                      <span className="thanks-review">
+                        Thanks for your review!
+                      </span>
+                    </div>
+                  ))}
               </div>
             </div>
           </div>
+
           <hr />
         </div>
       </div>
-      <DescriptionReview productDescription={product?.productDescription} />
+      <DescriptionReview
+        productDescription={product?.productDescription}
+        reviews={reviews}
+      />
       <RelatedProduct relatedProducts={relatedProducts} />
     </>
   );

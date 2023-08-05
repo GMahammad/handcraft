@@ -4,15 +4,15 @@ import React from "react";
 const CarouselHome = () => {
   return (
     <div className="carousel-main">
-    <Carousel showThumbs={false}  showStatus={false} autoFocus={true} centerMode={true} autoPlay={true} infiniteLoop={true}>
+    <Carousel showThumbs={false} width={"100%"}  showStatus={false} autoFocus={true} autoPlay={true} infiniteLoop={true} >
       <div>  
-        <img src="https://img.freepik.com/free-photo/mid-century-modern-living-room-interior-design-with-monstera-tree_53876-129805.jpg?w=2000" />
+        <img src={require("../../Assets/Images/home1.jpg")} />
       </div>
       <div>
-        <img src="https://img.freepik.com/free-photo/mid-century-modern-living-room-interior-design-with-monstera-tree_53876-129803.jpg" />
+      <img src={require("../../Assets/Images/home2.jpg")} />
       </div>
       <div>
-        <img src="https://img.freepik.com/premium-photo/living-room-with-wooden-chair-lamp-wall_899870-23915.jpg?w=360" />
+      <img src={require("../../Assets/Images/home3.jpeg")} />
       </div>
     </Carousel>
     <div className="my-5"></div>

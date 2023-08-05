@@ -8,6 +8,8 @@ class ProductModel {
   productName: string;
   productDescription: string;
   discountedPrice:number;
+  createdAt:string;
+
   color:ColorModel[]
   constructor(
     productId: number,
@@ -17,6 +19,7 @@ class ProductModel {
     productName: string,
     productDescription: string,
     discountedPrice:number,
+  createdAt:string,
     color:ColorModel[]
   ) {
     this.productId = productId;
@@ -26,6 +29,7 @@ class ProductModel {
     this.productName = productName;
     this.productDescription = productDescription;
     this.discountedPrice = discountedPrice;
+    this.createdAt = createdAt;
     this.color = color
   }
 }

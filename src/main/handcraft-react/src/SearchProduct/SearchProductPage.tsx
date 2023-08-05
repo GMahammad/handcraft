@@ -11,13 +11,10 @@ const SearchProductPage = () => {
   const [isLoadingProduct, setIsLoadingProduct] = useState(true);
   const [httpError, setHttpError] = useState(null);
   const [products, setProducts] = useState<ProductModel[]>([]);
-  
-  
+
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  const [productPerPage,setProductPerPage] = useState(9);
-
-
+  const [productPerPage, setProductPerPage] = useState(9);
 
   const [totalElements, setTotalElements] = useState(0);
   const [categories, setCategories] = useState<CategoryModel[]>([]);
@@ -27,8 +24,9 @@ const SearchProductPage = () => {
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(10000);
   const [priceError, setPriceError] = useState(false);
-  const [gridView,setGridView] = useState(true)
-  const [sortUrl,setSortUrl] = useState("&sort=")
+  const [gridView, setGridView] = useState(true);
+  const [mobile, setMobile] = useState(false);
+  const [sortUrl, setSortUrl] = useState("&sort=");
 
   // Fetching Searched Products || All Products
   useEffect(() => {
@@ -40,16 +38,25 @@ const SearchProductPage = () => {
         maxPrice,
         setProducts,
         setPriceError,
-        currentPage,productPerPage,
+        currentPage,
+        productPerPage,
         setTotalPages,
         setTotalElements,
         sortUrl
       );
-
+   
     } catch (err: any) {
       setHttpError(err.message);
     }
-  }, [searchTitle, categoryId, minPrice, maxPrice,currentPage,gridView,sortUrl]);
+  }, [
+    searchTitle,
+    categoryId,
+    minPrice,
+    maxPrice,
+    currentPage,
+    gridView,
+    sortUrl,
+  ]);
 
   // Fetching Categories
   useEffect(() => {
@@ -66,16 +73,6 @@ const SearchProductPage = () => {
     fetchCategories().catch((err) => setHttpError(err.message));
   }, []);
 
-
-
-  if (isLoadingProduct) {
-    return <Spinner />;
-  }
-
-  if (httpError) {
-    return <>{httpError}</>;
-  }
-
   const handleSearchInputValidInput = (input: string) => {
     const modifiedInput = input.replace(/[^a-zA-Z0-9 ]/g, "#");
     if (modifiedInput.includes("#")) {
@@ -86,20 +83,39 @@ const SearchProductPage = () => {
     }
   };
 
-  const handleSortUrl= (value:string)=>{
-    switch(value){
-      case "asc": setSortUrl("&sort=productName,asc"); break;
-      case "desc": setSortUrl("&sort=productName,desc"); break;
-      case "priceasc": setSortUrl("&sort=price,asc"); break;
-      case "pricedesc": setSortUrl("&sort=price,desc"); break;
-      case "default": setSortUrl("&sort="); break;
+  const handleSortUrl = (value: string) => {
+    switch (value) {
+      case "asc":
+        setSortUrl("&sort=productName,asc");
+        break;
+      case "desc":
+        setSortUrl("&sort=productName,desc");
+        break;
+      case "priceasc":
+        setSortUrl("&sort=price,asc");
+        break;
+      case "pricedesc":
+        setSortUrl("&sort=price,desc");
+        break;
+      case "default":
+        setSortUrl("&sort=");
+        break;
     }
-  }
+  };
 
   const paginate = (pageNumber: number) => {
     setCurrentPage(pageNumber);
-    window.scrollTo({top:5,behavior:"smooth"})
+    window.scrollTo({ top: 5, behavior: "smooth" });
+  };
+
+  if (isLoadingProduct) {
+    return <Spinner />;
   }
+
+  if (httpError) {
+    return <>{httpError}</>;
+  }
+
   return (
     <>
       <div>
@@ -131,8 +147,7 @@ const SearchProductPage = () => {
                         onChange={(e) =>
                           handleSearchInputValidInput(e.target.value)
                         }
-                      >
-                      </input>
+                      ></input>
                       <span>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -240,7 +255,6 @@ const SearchProductPage = () => {
                       </ul>
                     </div>
                   </div>
-                  
                 </div>
               </div>
               <div className="col-lg-9 order-1 order-lg-2">
@@ -250,18 +264,22 @@ const SearchProductPage = () => {
                       <div className="shop-found-selector">
                         <div className="shop-found">
                           <p>
-                            <span></span>Number of Product Found: <span>{totalElements}</span>
+                            <span></span>Number of Product Found:{" "}
+                            <span>{totalElements}</span>
                           </p>
                         </div>
                         <div className="shop-selector">
                           <label>Sort By : </label>
-                          <select className="sort-input" name="select" onChange={(e) => handleSortUrl(e.target.value)}>
-                            <option  value="default">Default</option>
-                            <option value="asc">  A to Z  </option>
-                            <option  value="desc"> Z to A</option>
-                            <option  value="priceasc"> Price Asc</option>
-                            <option  value="pricedesc"> Price Desc</option>
-
+                          <select
+                            className="sort-input"
+                            name="select"
+                            onChange={(e) => handleSortUrl(e.target.value)}
+                          >
+                            <option value="default">Default</option>
+                            <option value="asc"> A to Z </option>
+                            <option value="desc"> Z to A</option>
+                            <option value="priceasc"> Price Asc</option>
+                            <option value="pricedesc"> Price Desc</option>
                           </select>
                         </div>
                       </div>
@@ -280,7 +298,9 @@ const SearchProductPage = () => {
                               fill="currentColor"
                               className="bi bi-grid-3x3-gap view-svg"
                               viewBox="0 0 16 16"
-                              onClick={() =>{setGridView(true) } }
+                              onClick={() => {
+                                setGridView(true);
+                              }}
                             >
                               <path d="M4 2v2H2V2h2zm1 12v-2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm0-5V7a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm0-5V2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm5 10v-2a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm0-5V7a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm0-5V2a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zM9 2v2H7V2h2zm5 0v2h-2V2h2zM4 7v2H2V7h2zm5 0v2H7V7h2zm5 0h-2v2h2V7zM4 12v2H2v-2h2zm5 0v2H7v-2h2zm5 0v2h-2v-2h2zM12 1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1h-2zm-1 6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V7zm1 4a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1h-2z" />
                             </svg>
@@ -291,14 +311,16 @@ const SearchProductPage = () => {
                             aria-selected="true"
                           >
                             <svg
-                            style={{cursor:"pointer"}}
+                              style={{ cursor: "pointer" }}
                               xmlns="http://www.w3.org/2000/svg"
                               width="26"
                               height="26"
                               fill="currentColor"
                               className="bi bi-list view-svg"
                               viewBox="0 0 16 16"
-                              onClick={()=>{setGridView(false)}}
+                              onClick={() => {
+                                setGridView(false);
+                              }}
                             >
                               <path
                                 fillRule="evenodd"
@@ -322,10 +344,11 @@ const SearchProductPage = () => {
                           ) : (
                             products.map((product) => (
                               <SearchItem
-                              productId = {product.productId}
-                              gridView = {gridView}
+                                productId={product.productId}
+                                gridView={gridView}
                                 product={product}
                                 key={product.productId}
+                                mobile={mobile}
                               />
                             ))
                           )}
@@ -334,9 +357,15 @@ const SearchProductPage = () => {
                     </div>
                   </div>
                 </div>
-                {totalElements >=9 ? 
-                <Pagination currentPage={currentPage} totalPages={totalPages} paginate={paginate}/>
-              :<></>}
+                {totalElements >= 9 ? (
+                  <Pagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    paginate={paginate}
+                  />
+                ) : (
+                  <></>
+                )}
               </div>
             </div>
           </div>

@@ -14,7 +14,7 @@ const CartPage = () => {
 
   return (
     <>
-      <div className="cart-main-area pt-95 pb-100">
+      <div className="cart-main-area my-5">
         <div className="container">
           <div className="row">
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">

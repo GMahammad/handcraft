@@ -44,13 +44,28 @@ const CartItem: React.FC<{
             ? `${props.item.productName.slice(0, 15)}...`
             : props.item.productName}
         </p>
-        <p>     {props.item.discount
-                                ? `${props.item.discountedPrice}`
-                                : props.item.price}$ X {props.count}</p>
+        <p>
+          {" "}
+          {props.item.discount
+            ? `${props.item.discountedPrice}`
+            : props.item.price}
+          $ X {props.count}
+        </p>
         <p>Color:{props.color}</p>
       </div>
       <div>
-        <button onClick={()=>dispatch(removeItem({productId:props.item.productId,color:props.color,count:props.count}))} className="remove-cart-item">
+        <button
+          onClick={() =>
+            dispatch(
+              removeItem({
+                productId: props.item.productId,
+                color: props.color,
+                count: props.count,
+              })
+            )
+          }
+          className="remove-cart-item"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"

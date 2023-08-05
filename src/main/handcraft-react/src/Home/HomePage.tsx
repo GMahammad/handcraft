@@ -9,7 +9,7 @@ const HomePage = () => {
       <CarouselHome/>
       <Banner/>
       <Banner2/>
-
+   
     </>
   )
 }

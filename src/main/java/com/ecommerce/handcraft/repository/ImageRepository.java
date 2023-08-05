@@ -9,4 +9,6 @@ import org.springframework.web.bind.annotation.RequestPart;
 @Repository
 public interface ImageRepository extends JpaRepository<Image,Long> {
     List<Image> findByProductProductId(Long productId);
+    void deleteByProductProductId(Long productId);
+
 }

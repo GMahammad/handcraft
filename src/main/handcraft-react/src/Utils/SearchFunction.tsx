@@ -14,14 +14,12 @@ const fetchProductByAllInputs = async (
   setTotalElements: Dispatch<SetStateAction<number>>,
   sortUrl:string
 ) => {
-
   if (
     isNaN(maxPrice) || isNaN(minPrice)
   ) {
     setPriceError(true);
   } else {
     setPriceError(false);
-   
     let url = "";
     if (
       searchTitle !== "" &&
@@ -83,6 +81,7 @@ const fetchProductByAllInputs = async (
       if (!responseData.ok) {
         throw new Error("Something went wrong!");
       }
+
       const responseJson = await responseData.json();
       setTotalPages(responseJson.page.totalPages)
       setProducts(responseJson._embedded.products);
