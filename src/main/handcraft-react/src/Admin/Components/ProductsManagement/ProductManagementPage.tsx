@@ -157,7 +157,7 @@ const ProductManagementPage = () => {
           <div className="shop-sidebar my-3 ">
             <div className="container">
               <div className="row">
-                <div className="col-lg-4 col-md-12 col-sm-12 col-12">
+                <div className="col-lg-4 col-md-6 col-sm-12 col-12 d-flex justify-content-center">
                   <div className="sidebar-widget">
                     <h3 className="sidebar-title ">Search Products</h3>
                     {invalidChar ? (
@@ -175,6 +175,7 @@ const ProductManagementPage = () => {
                       }
                     >
                       <input
+                        id="admin-search-bar"
                         className="search-bar"
                         placeholder="Search Products..."
                         type="text"
@@ -197,9 +198,9 @@ const ProductManagementPage = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-lg-4 col-md-12 col-sm-12 col-12">
-                  <div className="sidebar-widget">
-                    <h3 className="sidebar-title pb-1">Filter by Price</h3>
+                <div className="col-lg-4 col-md-6 col-sm-12 col-12 d-flex justify-content-center mt-1">
+                  <div className="sidebar-widget  text-center">
+                    <h3 className="sidebar-title">Filter by Price</h3>
                     {priceError ? (
                       <p className="error-search">
                         Max and Min prices should be corresponding order!
@@ -237,8 +238,8 @@ const ProductManagementPage = () => {
                   </div>
                 </div>
                 <div className="col-lg-4 col-md-12 col-sm-12 col-12">
-                  <div className="shop-selector">
-                    <h3 className="pb-2">Sort By : </h3>
+                  <div className="shop-selector pt-3 d-flex justify-content-center align-items-center">
+                    <h3 className="m-0">Sort By : </h3>
                     <select
                       className="sort-input"
                       name="select"

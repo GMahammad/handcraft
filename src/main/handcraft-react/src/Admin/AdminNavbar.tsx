@@ -13,17 +13,15 @@ const AdminNavbar = () => {
     <>
       <div
         className={`left-side-menu d-lg-block ${
-          visible && "d-md-none d-sm-none d-block "
+          visible && "d-md-none d-sm-none d-none "
         }`}
       >
         <div className="h-100" data-simplebar>
-       
-
           <div id="sidebar-menu">
             <ul id="side-menu">
               <li className="side-menu-image">
                 <Link to="/">
-                <img src={require("../Assets/Images/logo.png")} alt="" />
+                  <img src={require("../Assets/Images/logo.png")} alt="" />
                 </Link>
               </li>
               <li className="menu-title">Navigation</li>
@@ -31,8 +29,7 @@ const AdminNavbar = () => {
                 <Link className="px-0" to="/">
                   <i className="mdi mdi-calendar-blank-outline"></i>
                   <span>
-                    {" "}
-                    Handcraft{" "}
+                    Handcraft
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -50,7 +47,6 @@ const AdminNavbar = () => {
                 <Link className="px-0" to="/admin">
                   <i className="mdi mdi-calendar-blank-outline"></i>
                   <span>
-                    {" "}
                     Dashboard{" "}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -70,21 +66,37 @@ const AdminNavbar = () => {
                 <Link className="px-0" to="/admin/productmanage">
                   <i className="mdi mdi-email-outline"></i>
                   <span>
-                    {" "}
-                    Products Management{" "}
+                    Products Management
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
                       height="16"
                       fill="currentColor"
-                      className="float-end bi bi-pencil-square"
+                      className="float-end bi bi-clipboard-data"
                       viewBox="0 0 16 16"
                     >
-                      <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                      <path
-                        fillRule="evenodd"
-                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
-                      />
+                      <path d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0V9z" />
+                      <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
+                      <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
+                    </svg>
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link className="px-0" to="/admin/homepagemanage">
+                  <i className="mdi mdi-email-outline"></i>
+                  <span>
+                    Home Page Management
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      className="bi bi-images float-end"
+                      viewBox="0 0 16 16"
+                    >
+                      <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+                      <path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2zM14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1zM2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1h-10z" />
                     </svg>
                   </span>
                 </Link>

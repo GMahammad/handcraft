@@ -263,13 +263,13 @@ const SearchProductPage = () => {
                     <div className="shop-bar pb-60">
                       <div className="shop-found-selector">
                         <div className="shop-found">
-                          <p>
-                            <span></span>Number of Product Found:{" "}
+                          <p className="px-2">
+                            Number of Product Found:{" "}
                             <span>{totalElements}</span>
                           </p>
                         </div>
                         <div className="shop-selector">
-                          <label>Sort By : </label>
+                          <label className="px-2">Sort By : </label>
                           <select
                             className="sort-input"
                             name="select"

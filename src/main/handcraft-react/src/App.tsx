@@ -22,6 +22,7 @@ import AdminList from "./Admin/Components/AdminAuth/AdminList";
 import UserManagement from "./Admin/Components/AdminAuth/UserManagement/UserManagement";
 import { useSelector } from "react-redux";
 import TodoPage from "./Admin/Components/AdminTodo/TodoPage";
+import HomePageManagement from "./Admin/Components/HomePageManagement/HomePageManagement";
 
 function App() {
   const location = useLocation();
@@ -72,6 +73,10 @@ function App() {
               <Route path="/admin/productmanage">
                 <AdminNavbar />
                 <ProductManagementPage />
+              </Route>
+              <Route path="/admin/homepagemanage">
+                <AdminNavbar />
+                <HomePageManagement />
               </Route>
               <Route path="/admin/createproduct">
                 <AdminNavbar />

@@ -14,7 +14,7 @@ const Banner2 = () => {
                     Make Yourself More <br />
                     Smart
                   </h2>
-                  <Link className="banner-btn btn-hover" to="/search">
+                  <Link className="btn btn-secondary" to="/search">
                     Buy Now
                   </Link>
                 </div>
@@ -29,7 +29,7 @@ const Banner2 = () => {
                     More Smart
                   </h2>
              
-                  <Link className="banner-btn btn-hover" to="/search">
+                  <Link className="btn btn-secondary" to="/search">
                     Buy Now
                   </Link>
                 </div>

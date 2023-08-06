@@ -31,7 +31,7 @@ const AddTodoModal = () => {
       open={open}
       trigger={
         <div className="add-new-todo">
-          <h3>
+          <h3 className="add-new-task">
             <span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"

@@ -113,12 +113,12 @@ const EditProduct = () => {
         loaddedColors.push(requestData[key].colorName);
       }
 
-      let loaddedColorIds:number[] = [];
+      let loaddedColorIds: number[] = [];
       for (const key in requestData) {
         loaddedColorIds.push(requestData[key].colorID);
       }
       setSelectedColors(loaddedColors);
-      setSelectedColorsIds(loaddedColorIds)
+      setSelectedColorsIds(loaddedColorIds);
     };
     fetchSelectedColors().catch((e: any) => setHttpError(e.message));
   }, []);

@@ -187,6 +187,7 @@ nav {
 }
 
 .offer-img {
+  margin-top: 5em;
   position: relative;
   text-align: center;
 }
@@ -1002,7 +1003,7 @@ a.bundle-btn {
   color: #050035;
 }
 .shop-selector {
-  margin-left: 63px;
+  /* margin-left: 63px; */
   margin-top: -3px;
 }
 .shop-selector label {
@@ -2586,7 +2587,7 @@ h5.panel-title {
   left: 0;
   right: 0;
   height: 70px;
-  z-index: 1001;
+  z-index: 100;
 }
 .navbar-custom .topnav-menu.topnav-menu-left {
   display: inline-block;
@@ -2726,12 +2727,46 @@ h5.panel-title {
 }
 
 
+.flip-img > img{
+  border-radius: 50%;
+  border: 2px solid rgb(237, 237, 196);
+  width: 325px;
+  height: 325px;
+  object-fit: cover;
+  transition: .6s;
+}
+.flip-img{
+  position: relative;
+  width: 100%;
+  height: 300px;
+}
 
-
+.flip-img:hover #first-img{
+  transform: scaleX(-1);
+  opacity: 0;
+}
+.flip-img:hover #second-img{
+  opacity: 1;
+  visibility: visible;
+  transform: scaleX(-1);
+}
+#first-img{
+  position: absolute;
+  top: 0;
+  left: 17%;
+}
+#second-img{
+  position: absolute;
+  top: 0;
+  visibility: hidden;
+  opacity: 0;
+  left: 17%;
+}
 
 @media only screen and (max-width: 780px){
-  .offer-img > img{
-    width: 200px;
+  .flip-img > img{
+    width: 250px;
+    height: 250px;
   }
   .carousel-main img{
     margin-top: 0;

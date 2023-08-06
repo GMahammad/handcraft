@@ -17,6 +17,7 @@ public class MyDataRestConfiguration implements RepositoryRestConfigurer {
         HttpMethod[] theUnsupportedAActions = {HttpMethod.POST, HttpMethod.PATCH, HttpMethod.DELETE, HttpMethod.PUT};
         config.exposeIdsFor(Product.class);
         config.exposeIdsFor(Image.class);
+        config.exposeIdsFor(Homepage.class);
         config.exposeIdsFor(Category.class);
         config.exposeIdsFor(Color.class);
         config.exposeIdsFor(Message.class);
@@ -34,6 +35,7 @@ public class MyDataRestConfiguration implements RepositoryRestConfigurer {
         disableHttpMethods(User.class, config, theUnsupportedAActions);
         disableHttpMethods(Roles.class, config, theUnsupportedAActions);
         disableHttpMethods(Review.class, config, theUnsupportedAActions);
+        disableHttpMethods(Homepage.class, config, theUnsupportedAActions);
 
 
         /* Configure CORS Mapping */
