@@ -6,6 +6,13 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "../src/Redux/store";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+
+const stripePromise = loadStripe(
+  "pk_test_51Nc7loHAXWUxofjkEpvw3Qfm9QTNyQYgyNawTYcWbWf9GNSwp3BmyLSR1jYBvgBSQDZZkLo1m0YMFSqDFB5vIYgo00umCPdxOJ"
+);
+
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
@@ -14,7 +21,9 @@ root.render(
     <BrowserRouter>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <App />
+          <Elements stripe={stripePromise}>
+            <App />
+          </Elements>
         </PersistGate>
       </Provider>
     </BrowserRouter>

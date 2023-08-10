@@ -39,61 +39,27 @@ const cartSlice = createSlice({
     },
 
     removeItem: (state: any, action) => {
-      const { productId, color,count } = action.payload;
+      const { productId, color, count } = action.payload;
       state.cartItems = state.cartItems.filter(
-        (item: any) =>
-          item.item.productId !== productId || item.color !== color
+        (item: any) => item.item.productId !== productId || item.color !== color
       );
-      state.count -= count
+      state.count -= count;
 
-      // const indexOfElem = state.cartItems.findIndex(
-      //   (item: any) => item.item.productId === productId
-      // );
-      // let selectedItem = data.filter((item:any)=> item.item.productId === productId && item.color===color)
-      // state.cartItems = data.filter((item:any)=>item !== selectedItem[0] && item.item.productId !==selectedItem[0].item.productId)
-      // data.forEach((element:any) => {
-      //   if(element.item.productId === productId && element.color === color){
-      //     state.count-= element.count
-      //   }
-      // });
-      // if(state.count > 0){
-      //   // state.count -= removedCount;
-      //   state.cartItems = state.cartItems.filter(
-      //     (item: any, index: number) =>
-      //     item.item.productId !== productId || index !== indexOfElem
-      //     );
-      // }else{
-      //   state.count = 0
-      // }
     },
 
-    // cartItems = [{productId,n,p,...}]
     calculateTotals: (state: any) => {
       let totalPrice = 0;
       state.cartItems.forEach((cartItem: any) => {
-        totalPrice += cartItem.item.price * cartItem.count;
+        if (cartItem.item.discount > 0) {
+          totalPrice += cartItem.item.discountedPrice * cartItem.count;
+        } else {
+          totalPrice += cartItem.item.price * cartItem.count;
+        }
       });
 
       state.total = totalPrice;
     },
   },
-  // extraReducers:{
-  //   [String(getCardItems.pending)]:(state:any)=>{
-  //       state.isLoadingCart=true
-  //   },
-  //   [String(getCardItems.fulfilled)]:(state:any,action)=>{
-  //       state.isLoadingCart=false;
-  //       let count = 1
-  //       if(state.cartItems[0].items.filter((x:ProductModel)=> x.productId))
-  //       state.cartItems = [{
-  //         items:action.payload,
-  //         count:count
-  //       }]
-  //   },
-  //   [String(getCardItems.rejected)]:(state:any)=>{
-  //       state.isLoadingCart=true;
-  //   }
-  // }
 });
 export const { clearCart, removeItem, calculateTotals, addToCart } =
   cartSlice.actions;

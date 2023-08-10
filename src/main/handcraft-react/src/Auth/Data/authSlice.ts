@@ -7,7 +7,8 @@ const initialAuthState = {
   tokenType: "",
   roles: [],
   isAuthenticated: false,
-  isAdmin:false
+  isAdmin:false,
+  isMod:false
 };
 
 const authSlice = createSlice({
@@ -35,6 +36,13 @@ const authSlice = createSlice({
       state.name = "";
       state.isAuthenticated = false;
     },
+    isModChecker:(state:any)=>{
+      if(state.roles.includes('MODERATOR')){
+        state.isMod = true
+      }else{
+        state.isMod = false
+      }
+    },
     isAdminChecker:(state:any)=>{
       if(state.roles.includes('ADMIN')){
         state.isAdmin = true
@@ -44,6 +52,6 @@ const authSlice = createSlice({
     }
   },
 });
-export const { loginSuccess, isAuthenticatedChecker, logout,isAdminChecker } =
+export const { loginSuccess, isAuthenticatedChecker, logout,isAdminChecker,isModChecker } =
   authSlice.actions;
 export default authSlice.reducer;

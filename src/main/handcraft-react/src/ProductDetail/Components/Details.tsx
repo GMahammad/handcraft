@@ -216,7 +216,7 @@ const Details: React.FC<{ productId: string }> = (props) => {
   }
   return (
     <>
-      <div className="product-details ptb-100 pb-90">
+      <div className="product-details ptb-100 pt-5">
         <div className="container">
           <div className="row">
             <h3 className="single-product-details">Product Details</h3>

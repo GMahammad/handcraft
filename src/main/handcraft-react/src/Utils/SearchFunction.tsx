@@ -23,7 +23,7 @@ const fetchProductByAllInputs = async (
       searchTitle !== "" &&
       categoryId !== 0 &&
       minPrice !== 0 &&
-      maxPrice !== 10000
+      maxPrice !== 100000000
     ) {
       url = `http://localhost:8080/api/products/search/findByProductNameContainingIgnoreCaseAndCategoryAndPriceBetween?productName=${searchTitle}&category=${categoryId}%20&minPrice=${minPrice}%20&maxPrice=${maxPrice}%20&page=${
         currentPage - 1
@@ -32,14 +32,14 @@ const fetchProductByAllInputs = async (
       searchTitle !== "" &&
       categoryId !== 0 &&
       minPrice === 0 &&
-      maxPrice === 10000
+      maxPrice === 100000000
     ) {
       url = `http://localhost:8080/api/products/search/findByProductNameContainingIgnoreCaseAndCategory?productName=${searchTitle}&category=${categoryId}%20`;
     } else if (
       searchTitle !== "" &&
       categoryId === 0 &&
       minPrice === 0 &&
-      maxPrice === 10000
+      maxPrice === 100000000
     ) {
       url = `http://localhost:8080/api/products/search/findByProductNameContainingIgnoreCase?productName=${searchTitle}&page=${
         currentPage - 1
@@ -48,7 +48,7 @@ const fetchProductByAllInputs = async (
       searchTitle !== "" &&
       categoryId === 0 &&
       minPrice !== 0 &&
-      maxPrice !== 10000
+      maxPrice !== 100000000
     ) {
       url = `http://localhost:8080/api/products/search/findByProductNameContainingIgnoreCaseAndPriceBetween?productName=${searchTitle}&minPrice=${minPrice}%20&maxPrice=${maxPrice}%20&page=${
         currentPage - 1
@@ -57,7 +57,7 @@ const fetchProductByAllInputs = async (
       searchTitle === "" &&
       categoryId !== 0 &&
       minPrice !== 0 &&
-      maxPrice !== 10000
+      maxPrice !== 100000000
     ) {
       url = `http://localhost:8080/api/products/search/findByCategoryAndPriceBetween?category=${categoryId}%20&minPrice=${minPrice}%20&maxPrice=${maxPrice}%20&page=${
         currentPage - 1
@@ -66,7 +66,7 @@ const fetchProductByAllInputs = async (
       searchTitle === "" &&
       categoryId !== 0 &&
       minPrice === 0 &&
-      maxPrice === 10000
+      maxPrice === 100000000
     ) {
       url = `http://localhost:8080/api/products/search/findByCategory?category=${categoryId}%20&page=${
         currentPage - 1
@@ -75,7 +75,7 @@ const fetchProductByAllInputs = async (
       searchTitle === "" &&
       categoryId === 0 &&
       minPrice !== 0 &&
-      maxPrice !== 10000
+      maxPrice !== 100000000
     ) {
       url = `http://localhost:8080/api/products/search/findByPriceBetween?minPrice=${minPrice}%20&maxPrice=${maxPrice}%20&page=${
         currentPage - 1

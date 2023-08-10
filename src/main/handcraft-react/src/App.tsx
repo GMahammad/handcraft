@@ -1,4 +1,11 @@
-import { Redirect, Route, Switch, useLocation } from "react-router-dom";
+import {
+  Redirect,
+  Route,
+  Router,
+  Switch,
+  useHistory,
+  useLocation,
+} from "react-router-dom";
 import "./App.css";
 import HomePage from "./Home/HomePage";
 import Footer from "./NavbarFooter/Footer";
@@ -23,11 +30,18 @@ import UserManagement from "./Admin/Components/AdminAuth/UserManagement/UserMana
 import { useSelector } from "react-redux";
 import TodoPage from "./Admin/Components/AdminTodo/TodoPage";
 import HomePageManagement from "./Admin/Components/HomePageManagement/HomePageManagement";
+import PaymentCompleted from "./Cart/Components/PaymentCompleted";
+import Login from "./Auth/Components/Login";
+import PaymentPage from "./Admin/Components/Payments/PaymentPage";
+import SinglePayment from "./Admin/Components/Payments/SinglePayment";
 
 function App() {
   const location = useLocation();
   const isAdminPage = location.pathname.includes("admin");
-  const { isAdmin } = useSelector((store: any) => store.auth);
+  const { isAdmin, isAuthenticated, isMod } = useSelector(
+    (store: any) => store.auth
+  );
+
   return (
     <div className="d-flex flex-column min-vh-100 mt-5 pt-2">
       {!isAdminPage && <Navbar />}
@@ -49,20 +63,21 @@ function App() {
           <Route path="/detail:productId">
             <ProductDetailPage />
           </Route>
-          <Route path="/cartpage">
-            <CartPage />
-          </Route>
-          <Route path="/checkout">
-            <Checkout />
-          </Route>
           <Route path="/authentication/register">
             <AuthPage register={true} />
           </Route>
           <Route path="/authentication/login">
             <AuthPage register={false} />
           </Route>
+
           {isAdmin && (
-            <>
+            <Route path="/admin/usermanagement">
+              <AdminNavbar />
+              <UserManagement />
+            </Route>
+          )}
+          {(isAdmin || isMod) && (
+            <Switch>
               <Route path="/admin" exact>
                 <AdminPage />
               </Route>
@@ -98,15 +113,33 @@ function App() {
                 <AdminNavbar />
                 <AdminList />
               </Route>
-              <Route path="/admin/usermanagement">
-                <AdminNavbar />
-                <UserManagement />
-              </Route>
+
               <Route path="/admin/todo">
                 <AdminNavbar />
                 <TodoPage />
               </Route>
-            </>
+              <Route path="/admin/payments">
+                <AdminNavbar />
+                <PaymentPage />
+              </Route>
+              <Route path="/admin/payments:checkoutId">
+                <AdminNavbar />
+                <SinglePayment />
+              </Route>
+              <Route path="/cartpage" component={CartPage} />
+              <Route path="/checkout" component={Checkout} />
+              <Route path="/paymentcompleted" component={PaymentCompleted} />
+            </Switch>
+          )}
+          {isAuthenticated ? (
+            <Switch>
+              <Route path="/cartpage" component={CartPage} />
+              <Route path="/checkout" component={Checkout} />
+              <Route path="/paymentcompleted" component={PaymentCompleted} />
+              <Redirect to="/cartpage" />
+            </Switch>
+          ) : (
+            <Redirect to="/authentication/login" />
           )}
         </Switch>
       </div>

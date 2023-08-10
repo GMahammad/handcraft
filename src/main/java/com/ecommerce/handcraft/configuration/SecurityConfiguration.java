@@ -65,8 +65,8 @@ public class SecurityConfiguration {
                 .cors() // Enable CORS support
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/v1/review/**", "/api/v1/products/admin/**").authenticated()
-                .antMatchers("/api/products/**", "/api/homepages/**", "/api/categories/**", "/api/colors/**", "/api/v1/products/getImages/**", "/api/reviews/**", "/api/v1/auth/**", "/api/v1/messages/**", "/api/messages/**").permitAll()
+                .antMatchers("/api/v1/review/**", "/api/v1/products/admin/**","/api/v1/checkout/**").authenticated()
+                .antMatchers("/api/products/**","/api/checkouts/**", "/api/homepages/**", "/api/categories/**", "/api/colors/**", "/api/v1/products/getImages/**", "/api/reviews/**", "/api/v1/auth/**", "/api/v1/messages/**", "/api/messages/**").permitAll()
                 .anyRequest().authenticated();
 
         http.authenticationProvider(authenticationProvider());

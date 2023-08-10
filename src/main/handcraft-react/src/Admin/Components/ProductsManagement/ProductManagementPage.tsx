@@ -26,7 +26,7 @@ const ProductManagementPage = () => {
   const [categoryId, setCategoryId] = useState(0);
   const [invalidChar, setInvalidChar] = useState(false);
   const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(10000);
+  const [maxPrice, setMaxPrice] = useState(100000000);
   const [priceError, setPriceError] = useState(false);
   const [gridView, setGridView] = useState(true);
   const [mobile, setMobile] = useState(false);

@@ -1,13 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.073c9b0a.css",
-    "main.js": "/static/js/main.fb2233d4.js",
-    "index.html": "/index.html",
-    "main.073c9b0a.css.map": "/static/css/main.073c9b0a.css.map",
-    "main.fb2233d4.js.map": "/static/js/main.fb2233d4.js.map"
+    "main.css": "/handcraft-front/static/css/main.f71afa07.css",
+    "main.js": "/handcraft-front/static/js/main.233e58d4.js",
+    "static/media/11.png": "/handcraft-front/static/media/11.35beba1383a2687402c4.png",
+    "static/media/rm452-f-014.jpg": "/handcraft-front/static/media/rm452-f-014.c3273d55ae1f037d1e2d.jpg",
+    "static/media/home-decor-signs-seamless-pattern-background-vector-20801523.jpg": "/handcraft-front/static/media/home-decor-signs-seamless-pattern-background-vector-20801523.8cf8356d35462c6395b2.jpg",
+    "static/media/bgnav.jpg": "/handcraft-front/static/media/bgnav.5580788ab50e570f63ad.jpg",
+    "static/media/1.png": "/handcraft-front/static/media/1.ec443e952df02b5f332d.png",
+    "static/media/26.jpg": "/handcraft-front/static/media/26.31b1b950b3356437bb6a.jpg",
+    "static/media/user_icon.png": "/handcraft-front/static/media/user_icon.860334226525d1bb8fbf.png",
+    "static/media/logo.png": "/handcraft-front/static/media/logo.8b5f046b0674458237f7.png",
+    "index.html": "/handcraft-front/index.html",
+    "main.f71afa07.css.map": "/handcraft-front/static/css/main.f71afa07.css.map",
+    "main.233e58d4.js.map": "/handcraft-front/static/js/main.233e58d4.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.fb2233d4.js"
+    "static/css/main.f71afa07.css",
+    "static/js/main.233e58d4.js"
   ]
 }
